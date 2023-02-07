@@ -5,7 +5,7 @@ const config = require('./config');
 const app = express();
 
 app.get("/", (req, res) => {
-    res.send("Hello World!");
+    res.json({message: "Bem vindo ao site API Receitas - SENAI Suíço Brasileiro"});
 });
 
 app.get("/receitas", async (req, res) => {
