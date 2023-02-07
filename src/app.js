@@ -8,11 +8,19 @@ app.get("/", (req, res) => {
     res.json({message: "Bem vindo ao site API Receitas - SENAI Suíço Brasileiro"});
 });
 
-app.get("/receitas", async (req, res) => {
-    let query = "SELECT * FROM receitas";
-    const [data] = await pool.query(query);
+app.get(["/receitas", "/receitas/:id"], async (req, res) => {
 
-    return res.json(data);
+    if (req.params["id"]) {
+        let query = `SELECT * FROM receitas WHERE id="${req.params["id"]}"`
+        const [data] = await pool.query(query);
+
+        return res.json(data);
+    } else {
+        let query = "SELECT * FROM receitas";
+        const [data] = await pool.query(query);
+    
+        return res.json(data);
+    }
 })
 
 app.listen(config.PORT, () => {
