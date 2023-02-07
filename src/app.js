@@ -5,7 +5,12 @@ const config = require('./config');
 const app = express();
 
 app.get("/", (req, res) => {
-    res.json({message: "Bem vindo ao site API Receitas - SENAI Suíço Brasileiro"});
+    res.json({
+        message: "Bem vindo ao site API Receitas - SENAI Suíço Brasileiro",
+        como_usar: "Acesse a URI 'https://receitas3dm.up.railway.app/receitas' para pegar todas as receitas. Acesse a URI 'https://receitas3dm.up.railway.app/receitas/<NOME_DO_TIPO>' para pegar a lista das receitas do tipo <NOME_DO_TIPO>.",
+        chave_acesso: "Para ter acesso aos recursos, uma chave tem que ser passada na URL no parâmetro 'key'.",
+        exemplo: "https://receitas3dm.up.railway.app/receitas?key=turma3dm"
+    });
 });
 
 app.get(["/receitas", "/receitas/:tipo"], async (req, res) => {
