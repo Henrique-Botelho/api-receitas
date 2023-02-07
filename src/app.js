@@ -10,7 +10,7 @@ app.get("/", (req, res) => {
 
 app.get(["/receitas", "/receitas/:tipo"], async (req, res) => {
 
-    if (req.params["id"]) {
+    if (req.params["tipo"]) {
         let query = `SELECT * FROM receitas WHERE tipo="${req.params["tipo"]}"`
         const [data] = await pool.query(query);
 
