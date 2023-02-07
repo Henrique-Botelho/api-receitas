@@ -8,10 +8,10 @@ app.get("/", (req, res) => {
     res.json({message: "Bem vindo ao site API Receitas - SENAI Suíço Brasileiro"});
 });
 
-app.get(["/receitas", "/receitas/:id"], async (req, res) => {
+app.get(["/receitas", "/receitas/:tipo"], async (req, res) => {
 
     if (req.params["id"]) {
-        let query = `SELECT * FROM receitas WHERE id="${req.params["id"]}"`
+        let query = `SELECT * FROM receitas WHERE tipo="${req.params["tipo"]}"`
         const [data] = await pool.query(query);
 
         return res.json(data);
