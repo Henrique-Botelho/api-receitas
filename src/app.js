@@ -9,10 +9,11 @@ app.get("/", (req, res) => {
 });
 
 app.get("/receitas", async (req, res) => {
-    let query = "SELECT * FROM receitas";
-    const [data] = await pool.query(query);
+    // let query = "SELECT * FROM receitas";
+    // const [data] = await pool.query(query);
 
-    return res.json(data);
+    // return res.json(data);
+    return res.send("Aqui era pra ficar as receitas");
 })
 
 app.listen(config.PORT, () => {
