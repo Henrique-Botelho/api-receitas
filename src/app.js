@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
 app.get(["/receitas", "/receitas/:tipo"], async (req, res) => {
 
     // Key de acesso para a API
-    if(req.query.key == "4WAPlNmInAy2ZTkIAMy9") {
+    if(req.query.key == config.KEY_ACCESS) {
         if (req.params["tipo"]) {
             let query = `SELECT * FROM receitas WHERE tipo="${req.params["tipo"]}"`
             const [data] = await pool.query(query);
