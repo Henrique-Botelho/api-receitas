@@ -10,16 +10,12 @@ app.get("/", (req, res) => {
 
 app.get(["/receitas", "/receitas/:tipo"], async (req, res) => {
 
+    // Key de acesso para a API
     if(req.query.key == "4WAPlNmInAy2ZTkIAMy9") {
         if (req.params["tipo"]) {
             let query = `SELECT * FROM receitas WHERE tipo="${req.params["tipo"]}"`
             const [data] = await pool.query(query);
     
-            return res.status(200).json(data);
-        } else if (typeof req.params["tipo"] == Number) {
-            let query = `SELECT * FROM receitas WHERE id="${req.params["id"]}"`;
-            const [data] = await pool.query(query);
-
             return res.status(200).json(data);
         } else {
             let query = "SELECT * FROM receitas";
