@@ -15,12 +15,17 @@ app.get(["/receitas", "/receitas/:tipo"], async (req, res) => {
             let query = `SELECT * FROM receitas WHERE tipo="${req.params["tipo"]}"`
             const [data] = await pool.query(query);
     
-            return res.json(data);
+            return res.status(200).json(data);
+        } else if (typeof req.params["tipo"] == Number) {
+            let query = `SELECT * FROM receitas WHERE id="${req.params["id"]}"`;
+            const [data] = await pool.query(query);
+
+            return res.status(200).json(data);
         } else {
             let query = "SELECT * FROM receitas";
             const [data] = await pool.query(query);
         
-            return res.json(data);
+            return res.status(200).json(data);
         }
     } else {
         return res.json({message: "Você não tem acesso a esse recurso!"});
