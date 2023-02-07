@@ -10,17 +10,22 @@ app.get("/", (req, res) => {
 
 app.get(["/receitas", "/receitas/:tipo"], async (req, res) => {
 
-    if (req.params["tipo"]) {
-        let query = `SELECT * FROM receitas WHERE tipo="${req.params["tipo"]}"`
-        const [data] = await pool.query(query);
-
-        return res.json(data);
-    } else {
-        let query = "SELECT * FROM receitas";
-        const [data] = await pool.query(query);
+    if(req.query.key == "4WAPlNmInAy2ZTkIAMy9") {
+        if (req.params["tipo"]) {
+            let query = `SELECT * FROM receitas WHERE tipo="${req.params["tipo"]}"`
+            const [data] = await pool.query(query);
     
-        return res.json(data);
+            return res.json(data);
+        } else {
+            let query = "SELECT * FROM receitas";
+            const [data] = await pool.query(query);
+        
+            return res.json(data);
+        }
+    } else {
+        return res.json({message: "Você não tem acesso a esse recurso!"});
     }
+
 })
 
 app.listen(config.PORT, () => {
